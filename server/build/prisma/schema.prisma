@@ -1,0 +1,92 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+model user {
+  id Int @id @default(autoincrement())
+  name String?
+  email String @unique
+  password String
+  role String  @default("USER")
+  basket basket[]
+  rating rating[]
+  createdAt  DateTime   @default(now())
+}
+
+model basket {
+  id Int @id @default(autoincrement())
+  user   user   @relation(fields: [userId], references: [id])
+  userId Int
+  ratin basketDevice[]
+  createdAt  DateTime   @default(now())
+}
+
+model basketDevice {
+   id Int @id @default(autoincrement())
+   basket basket @relation(fields:[basket_id], references:[id])
+   basket_id Int
+   device device  @relation(fields: [device_id], references: [id])
+   device_id Int
+}
+
+model device {
+   id Int @id @default(autoincrement())
+   name String @db.VarChar(300) 
+   price Int
+   rating Int @default(0)
+   img String @unique
+   type type @relation(fields:[type_Id], references:[id])
+   type_Id Int
+   brand brand @relation(fields:[brantId], references:[id])
+   brantId Int
+   reating rating[]
+   bascet_devike basketDevice[]
+   info deviceInfo[]
+   createdAt  DateTime   @default(now())
+}
+
+model type{
+   id Int @id @default(autoincrement())
+   name String 
+   device device[]
+   createdAt  DateTime   @default(now())
+}
+
+model brand{
+   id Int @id @default(autoincrement())
+   name String @unique
+   device device[]
+   createdAt  DateTime   @default(now())
+}
+
+model rating {
+   id Int @id @default(autoincrement())
+   rate Int 
+   user user @relation(fields: [userId], references: [id])
+   userId Int
+   device device @relation(fields: [device_Id], references: [id])
+   device_Id Int
+}
+
+
+model deviceInfo {
+   id Int @id @default(autoincrement())
+   title String 
+   description String
+   device device @relation(fields: [device_Id], references: [id])
+   device_Id Int
+   createdAt  DateTime   @default(now())
+}
+
+model typeBrand{
+  id Int @id @default(autoincrement())
+}

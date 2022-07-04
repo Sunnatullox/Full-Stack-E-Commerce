@@ -1,0 +1,40 @@
+{
+  "name": "servers",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node  build/index.js",
+    "dev": "nodemon src/index.ts",
+    "prisma": "npx prisma migrate dev --name init",
+    "init": "npx prisma init"
+  },
+  "keywords": [],
+  "author": "Sunnatullox",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^3.13.0",
+    "@types/express": "^4.17.13",
+    "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.18.0",
+    "express-fileupload": "^1.3.1",
+    "fs": "^0.0.1-security",
+    "jsonwebtoken": "^8.5.1",
+    "nodebb-theme-askavan": "github:mujibsardar/nodebb-theme-askavan",
+    "nodemon": "^2.0.15",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
+    "@types/cors": "^2.8.12",
+    "@types/express-fileupload": "^1.2.2",
+    "@types/jsonwebtoken": "^8.5.8",
+    "@types/node": "^17.0.29",
+    "@types/uuid": "^8.3.4",
+    "prisma": "^3.13.0",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.3"
+  }
+}
